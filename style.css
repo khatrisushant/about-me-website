@@ -175,3 +175,11 @@ button:hover {
     transform: translateY(0);
   }
 }
+button {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
