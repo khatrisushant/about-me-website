@@ -1,14 +1,16 @@
 const themeBtn = document.getElementById("themeBtn");
 
-themeBtn.addEventListener("click", function () {
-  document.body.classList.toggle("dark-mode");
+if (themeBtn) {
+  themeBtn.addEventListener("click", function () {
+    document.body.classList.toggle("dark-mode");
 
-  if (document.body.classList.contains("dark-mode")) {
-    themeBtn.textContent = "☀️";
-  } else {
-    themeBtn.textContent = "🌙";
-  }
-});
+    if (document.body.classList.contains("dark-mode")) {
+      themeBtn.textContent = "☀️";
+    } else {
+      themeBtn.textContent = "🌙";
+    }
+  });
+}
 
 const chatToggle = document.getElementById("chatToggle");
 const chatBox = document.getElementById("chatBox");
@@ -16,15 +18,18 @@ const chatInput = document.getElementById("chatInput");
 const sendBtn = document.getElementById("sendBtn");
 const chatMessages = document.getElementById("chatMessages");
 
-chatToggle.addEventListener("click", function () {
-  if (chatBox.style.display === "block") {
-    chatBox.style.display = "none";
-  } else {
-    chatBox.style.display = "block";
-  }
-});
+if (chatToggle && chatBox) {
+  chatToggle.addEventListener("click", function () {
+    if (chatBox.style.display === "block") {
+      chatBox.style.display = "none";
+    } else {
+      chatBox.style.display = "block";
+    }
+  });
+}
 
 function addMessage(text, className) {
+  if (!chatMessages) return;
   const message = document.createElement("div");
   message.classList.add(className);
   message.textContent = text;
@@ -51,8 +56,9 @@ function botReply(userText) {
 }
 
 function sendMessage() {
-  const userText = chatInput.value.trim();
+  if (!chatInput) return;
 
+  const userText = chatInput.value.trim();
   if (userText === "") return;
 
   addMessage(userText, "user-message");
@@ -64,10 +70,14 @@ function sendMessage() {
   }, 500);
 }
 
-sendBtn.addEventListener("click", sendMessage);
+if (sendBtn) {
+  sendBtn.addEventListener("click", sendMessage);
+}
 
-chatInput.addEventListener("keypress", function (event) {
-  if (event.key === "Enter") {
-    sendMessage();
-  }
-});
+if (chatInput) {
+  chatInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  });
+}
