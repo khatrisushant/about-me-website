@@ -49,19 +49,27 @@ function addMessage(text, className) {
 function botReply(userText) {
   const text = userText.toLowerCase();
 
-  if (text.includes("about")) {
-    return "Sushant is a student learning web development and building projects with HTML, CSS, JavaScript, and GitHub.";
-  } else if (text.includes("project")) {
-    return "One featured project is this personal portfolio website. More projects will be added soon.";
-  } else if (text.includes("contact") || text.includes("email")) {
-    return "You can contact Sushant at sushantkh69@gmail.com.";
-  } else if (text.includes("resume")) {
-    return "You can view the resume using the Resume section on this website.";
-  } else if (text.includes("github")) {
-    return "You can find GitHub in the Connect with Me section.";
-  } else {
-    return "I can answer questions about Sushant, projects, contact, GitHub, and resume.";
+  if (text.includes("project")) {
+    return "I built this personal portfolio website using HTML, CSS, and JavaScript. More projects coming soon!";
   }
+
+  if (text.includes("contact")) {
+    return "You can contact me via email or the call button on this page.";
+  }
+
+  if (text.includes("resume")) {
+    return "You can view my resume using the Resume section above.";
+  }
+
+  if (text.includes("who are you") || text.includes("about")) {
+    return "I'm Sushant Khatri, a student learning web development and building projects.";
+  }
+
+  if (text.includes("github")) {
+    return "Check out my GitHub for more projects!";
+  }
+
+  return "Try asking about projects, contact, resume, or about me!";
 }
 
 function sendMessage() {
