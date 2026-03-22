@@ -311,8 +311,8 @@ a:hover {
 }
 .call-float {
   position: fixed;
-  right: 20px;
-  bottom: 90px; /* above dark mode */
+  left: 20px;   /* changed from right → left */
+  bottom: 20px;
   z-index: 1000;
 
   width: 50px;
