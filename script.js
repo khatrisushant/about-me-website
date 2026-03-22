@@ -98,3 +98,11 @@ if (chatInput) {
     }
   });
 }
+// Intro screen open on click
+const introScreen = document.getElementById("intro-screen");
+
+if (introScreen) {
+  introScreen.addEventListener("click", () => {
+    introScreen.classList.add("hide");
+  });
+}
