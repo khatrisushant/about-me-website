@@ -106,3 +106,6 @@ if (introScreen) {
     introScreen.classList.add("hide");
   });
 }
+setTimeout(() => {
+  introScreen.classList.add("hide");
+}, 3000);

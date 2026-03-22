@@ -682,3 +682,22 @@ section {
     }
   }
 }
+.intro-content {
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#intro-screen.hide {
+  opacity: 0;
+  transform: scale(1.05);
+  transition: all 0.6s ease;
+}
