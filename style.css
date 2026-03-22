@@ -309,3 +309,30 @@ a:hover {
 #themeBtn:hover {
   transform: scale(1.1);
 }
+.call-float {
+  position: fixed;
+  right: 20px;
+  bottom: 90px; /* above dark mode */
+  z-index: 1000;
+
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #28a745, #5cd65c);
+  color: white;
+  font-size: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.call-float:hover {
+  transform: scale(1.1);
+}
