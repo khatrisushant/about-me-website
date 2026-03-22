@@ -282,3 +282,12 @@ a:hover {
 .call-btn:hover {
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
+#themeBtn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1000;
+  padding: 10px 14px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
