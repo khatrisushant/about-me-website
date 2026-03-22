@@ -584,13 +584,24 @@ section {
 .car {
   position: absolute;
   bottom: -5px;
-  left: -180px;
-  width: 170px;
-  height: 55px;
-  background: #e63946;
-  border-radius: 20px 35px 12px 12px;
-  animation: driveCar 4s linear infinite;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  left: -250px;
+  width: 200px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff2d55, #b30000);
+  border-radius: 25px 40px 15px 15px;
+  animation: driveFast 2.5s cubic-bezier(0.6, 0, 0.2, 1) infinite;
+  box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+  transform-origin: center;
+}
+.car::after {
+  content: "";
+  position: absolute;
+  left: -80px;
+  top: 20px;
+  width: 80px;
+  height: 10px;
+  background: linear-gradient(to right, rgba(255,0,0,0.5), transparent);
+  filter: blur(6px);
 }
 
 .car-top {
@@ -641,21 +652,24 @@ section {
   right: 22px;
 }
 
-@keyframes spinWheel {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes driveCar {
+@keyframes driveFast {
   0% {
-    left: -180px;
+    left: -250px;
+    transform: scale(0.8) rotate(-2deg);
+    opacity: 0;
   }
+
+  20% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.05) rotate(1deg);
+  }
+
   100% {
-    left: 330px;
+    left: 110%;
+    transform: scale(0.95) rotate(0deg);
   }
 }
 
