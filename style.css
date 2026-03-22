@@ -1,28 +1,60 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
   text-align: center;
+  background: linear-gradient(135deg, #eef2ff, #f8fafc);
+  color: #222;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 header {
-  background-color: #333;
+  background: linear-gradient(135deg, #1e293b, #334155);
   color: white;
-  padding: 30px 20px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 10px;
+  font-size: 42px;
+}
+
+header p {
+  font-size: 18px;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-top: 20px;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 main {
-  padding: 20px;
+  padding: 30px 20px;
 }
 
 .card {
   background: white;
   margin: 20px auto;
-  padding: 20px;
-  max-width: 600px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 25px;
+  max-width: 700px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+h2 {
+  margin-bottom: 15px;
 }
 
 ul {
@@ -31,67 +63,86 @@ ul {
 }
 
 li {
-  padding: 5px 0;
+  margin: 8px 0;
+}
+
+.project {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #e5e7eb;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 button {
-  margin-top: 20px;
   padding: 12px 20px;
   border: none;
-  background-color: #333;
+  border-radius: 10px;
+  background: #111827;
   color: white;
-  border-radius: 8px;
-  cursor: pointer;
   font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #555;
+  background: #374151;
 }
-.profile-pic {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  margin-top: 15px;
-  object-fit: cover;
-  border: 3px solid white;
-}
-@media (max-width: 600px) {
-  header {
-    padding: 20px 10px;
-  }
 
+/* Dark mode */
+.dark-mode {
+  background: linear-gradient(135deg, #0f172a, #111827);
+  color: #f8fafc;
+}
+
+.dark-mode .card {
+  background: #1f2937;
+  color: #f8fafc;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.dark-mode a {
+  color: #60a5fa;
+}
+
+.dark-mode .project {
+  border-top: 1px solid #374151;
+}
+
+.dark-mode button {
+  background: #f8fafc;
+  color: #111827;
+}
+
+.dark-mode button:hover {
+  background: #e5e7eb;
+}
+
+@media (max-width: 600px) {
   header h1 {
     font-size: 28px;
   }
 
   header p {
-    font-size: 16px;
+    font-size: 15px;
+  }
+
+  .profile-pic {
+    width: 110px;
+    height: 110px;
   }
 
   .card {
     width: 90%;
-    margin: 15px auto;
-    padding: 15px;
+    padding: 18px;
   }
-
-  .profile-pic {
-    width: 100px;
-    height: 100px;
-  }
-}
-.project {
-  margin-top: 15px;
-  padding: 10px;
-  border-top: 1px solid #ddd;
-}
-
-.project h3 {
-  margin-bottom: 5px;
-}
-
-.project a {
-  display: inline-block;
-  margin-top: 5px;
-  color: #0077cc;
 }
