@@ -484,3 +484,6 @@ section {
 .chat-input-area button:hover {
   background: #3b55a0;
 }
+.hidden {
+  display: none;
+}

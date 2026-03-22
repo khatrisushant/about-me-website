@@ -1,3 +1,12 @@
+// CHAT TOGGLE (PASTE THIS AT TOP)
+const chatbotToggle = document.getElementById("chatToggle");
+const chatbotBox = document.getElementById("chatBox");
+
+if (chatbotToggle && chatbotBox) {
+  chatbotToggle.addEventListener("click", () => {
+    chatbotBox.classList.toggle("hidden");
+  });
+}
 const themeBtn = document.getElementById("themeBtn");
 
 if (themeBtn) {
