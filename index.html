@@ -24,6 +24,8 @@
     </div>
   </div>
 </div>
+<!-- 🌌 PARTICLES BACKGROUND (ADD HERE) -->
+<div id="tsparticles"></div>
   <nav class="navbar">
   <div class="nav-logo">Sushant</div>
 
@@ -118,5 +120,146 @@
   </div>
 </div>
 <script src="script.js"></script>
+<canvas id="ag-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;"></canvas>
+
+<script>
+  (function() {
+    const canvas = document.getElementById('ag-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H, dpr;
+    let mouse = { x: -999, y: -999 };
+    let particles = [];
+    let t = 0;
+    const COLORS = ['#378ADD','#D4537E','#FAC775','#E24B4A','#1D9E75','#7F77DD','#D85A30','#5DCAA5','#F09595'];
+    const COUNT = 150;
+
+    function resize() {
+      dpr = window.devicePixelRatio || 1;
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * W;
+        this.y = Math.random() * H;
+        this.vx = (Math.random() - 0.5) * 1.0;
+        this.vy = (Math.random() - 0.5) * 1.0;
+        this.size = Math.random() * 2.5 + 1.5;
+        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        this.angle = Math.random() * Math.PI * 2;
+        this.aspectRatio = Math.random() * 0.35 + 0.18;
+        this.rotSpeed = (Math.random() - 0.5) * 0.04;
+        this.orbitAngle = Math.random() * Math.PI * 2;
+        this.orbitRadius = 60 + Math.random() * 80;
+        this.orbitSpeed = (Math.random() * 0.02 + 0.01) * (Math.random() < 0.5 ? 1 : -1);
+        // wave params — each particle has its own phase and frequency
+        this.wavePhase = Math.random() * Math.PI * 2;
+        this.waveFreqX = 0.012 + Math.random() * 0.018;
+        this.waveFreqY = 0.010 + Math.random() * 0.016;
+        this.waveAmpX = 0.18 + Math.random() * 0.28;
+        this.waveAmpY = 0.18 + Math.random() * 0.28;
+        // heartbeat pulse params
+        this.pulsePhase = Math.random() * Math.PI * 2;
+        this.pulseSpeed = 0.04 + Math.random() * 0.03;
+      }
+
+      heartbeat(t) {
+        // mimics a heartbeat: sharp spike then quick decay
+        const cycle = (t * this.pulseSpeed + this.pulsePhase) % (Math.PI * 2);
+        const p = cycle / (Math.PI * 2);
+        if (p < 0.1) return Math.sin(p / 0.1 * Math.PI) * 2.2;        // sharp up
+        if (p < 0.18) return Math.sin((p - 0.1) / 0.08 * Math.PI) * -0.9; // dip
+        if (p < 0.28) return Math.sin((p - 0.18) / 0.10 * Math.PI) * 1.4;  // second peak
+        return Math.exp(-(p - 0.28) * 12) * 0.3;                        // decay
+      }
+
+      update(t) {
+        const dx = mouse.x - this.x;
+        const dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        // --- cursor orbit ---
+        if (mouse.x > 0 && dist < 350) {
+          this.orbitAngle += this.orbitSpeed;
+          const targetX = mouse.x + Math.cos(this.orbitAngle) * this.orbitRadius;
+          const targetY = mouse.y + Math.sin(this.orbitAngle) * this.orbitRadius;
+          const tx = targetX - this.x;
+          const ty = targetY - this.y;
+          const td = Math.sqrt(tx * tx + ty * ty);
+          if (td > 0) {
+            const pull = Math.max(0, (350 - dist) / 350);
+            this.vx += (tx / td) * pull * 0.55;
+            this.vy += (ty / td) * pull * 0.55;
+          }
+        }
+
+        // --- heartbeat wave force ---
+        const hb = this.heartbeat(t);
+        const waveX = Math.sin(t * this.waveFreqX + this.x * 0.008 + this.wavePhase) * this.waveAmpX;
+        const waveY = Math.cos(t * this.waveFreqY + this.y * 0.008 + this.wavePhase) * this.waveAmpY;
+        this.vx += (waveX + hb * 0.12) * 0.4;
+        this.vy += (waveY + hb * 0.12) * 0.4;
+
+        // --- gentle random drift ---
+        this.vx += (Math.random() - 0.5) * 0.04;
+        this.vy += (Math.random() - 0.5) * 0.04;
+
+        // friction
+        this.vx *= 0.93;
+        this.vy *= 0.93;
+
+        this.x += this.vx;
+        this.y += this.vy;
+        this.angle += this.rotSpeed + hb * 0.02;
+
+        // wrap edges
+        if (this.x < -30) this.x = W + 30;
+        if (this.x > W + 30) this.x = -30;
+        if (this.y < -30) this.y = H + 30;
+        if (this.y > H + 30) this.y = -30;
+      }
+
+      draw(t) {
+        const hb = this.heartbeat(t);
+        const pulse = 1 + hb * 0.12;
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+        ctx.fillStyle = this.color;
+        ctx.globalAlpha = Math.min(0.95, 0.7 + Math.abs(hb) * 0.15);
+        ctx.beginPath();
+        ctx.ellipse(0, 0, this.size * 2.2 * pulse, this.size * this.aspectRatio * 2.2 * pulse, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function init() {
+      particles = [];
+      for (let i = 0; i < COUNT; i++) particles.push(new Particle());
+    }
+
+    function loop() {
+      t++;
+      ctx.clearRect(0, 0, W, H);
+      particles.forEach(p => { p.update(t); p.draw(t); });
+      requestAnimationFrame(loop);
+    }
+
+    document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+    document.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+    document.addEventListener('touchmove', e => {
+      e.preventDefault();
+      mouse.x = e.touches[0].clientX;
+      mouse.y = e.touches[0].clientY;
+    }, { passive: false });
+    document.addEventListener('touchend', () => { mouse.x = -999; mouse.y = -999; });
+    window.addEventListener('resize', () => { resize(); init(); });
+
+    resize(); init(); loop();
+  })();
+</script>
 </body>
 </html>
