@@ -3,122 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Me</title>
+  <title>SUSHANT.ROBOT - System Online</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Cyberspace Grid Background -->
+  <div class="cyberspace-grid"></div>
+  <div class="scan-lines"></div>
+  
   <!-- Splash / Intro Screen -->
-<div id="intro-screen">
-  <div class="road"></div>
-
+<div id="intro-screen" class="robot-intro">
+  <div class="matrix-bg"></div>
   <div class="intro-content">
-    <h1>Welcome</h1>
-    <p>Click anywhere to enter the website</p>
+    <h1 class="glitch-text">[ INITIALIZING SYSTEM ]</h1>
+    <p class="terminal-text">> Click anywhere to engage protocol</p>
 
-    <div class="car-wrap">
-      <div class="car">
-        <div class="car-top"></div>
-        <div class="wheel wheel1"></div>
-        <div class="wheel wheel2"></div>
-      </div>
+    <div class="robot-head">
+      <div class="visor"></div>
+      <div class="face-grid"></div>
     </div>
   </div>
 </div>
-<!-- 🌌 PARTICLES BACKGROUND (ADD HERE) -->
-<div id="tsparticles"></div>
+
   <nav class="navbar">
-  <div class="nav-logo">Sushant</div>
+  <div class="nav-logo">
+    <span class="neon-bracket">[</span> SUSHANT.ROBOT <span class="neon-bracket">]</span>
+  </div>
 
   <div class="nav-links">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-    <a href="#resume">Resume</a>
+    <a href="#about" class="nav-link">// ABOUT</a>
+    <a href="#projects" class="nav-link">// PROJECTS</a>
+    <a href="#contact" class="nav-link">// CONTACT</a>
+    <a href="#resume" class="nav-link">// RESUME</a>
   </div>
 </nav>
-  <header>
-    <h1>Hello, I'm Sushant Khatri</h1>
-    <p>Welcome to my simple personal website</p>
-    <img src="profile.jpg" alt="My Photo" class="profile-pic" />
+  <header class="robot-header">
+    <div class="header-border"></div>
+    <h1 class="terminal-heading">SUSHANT_KHATRI</h1>
+    <p class="terminal-text">> WEB DEVELOPER & TECH ENTHUSIAST</p>
+    <p class="system-status">[ SYSTEM ONLINE ]</p>
+    <img src="profile.jpg" alt="My Photo" class="profile-pic robot-avatar" />
   </header>
 
   <main>
-    <button id="themeBtn">🌙</button>
+    <button id="themeBtn" class="circuit-btn">⚡ POWER</button>
 
-    <section class="card" id="about">
-      <h2>About Me</h2>
-      <p>
-    
-  Hi, I'm Sushant Khatri. I am a student learning web development and building
-  projects using HTML, CSS, JavaScript, and GitHub. I enjoy technology, coding,
-  and improving my skills by creating simple and useful websites.
+    <section class="card robot-card" id="about">
+      <div class="card-header">
+        <h2 class="card-title">> ABOUT PROTOCOL</h2>
+        <div class="header-line"></div>
+      </div>
+      <p class="terminal-text">
+        GREETINGS. I AM SUSHANT_KHATRI. CURRENTLY EXECUTING: WEB_DEVELOPMENT_PROTOCOL. SYSTEMS INCLUDE: HTML, CSS, JAVASCRIPT, GITHUB_INTEGRATION. PRIMARY_FUNCTION: BUILDING_ELEGANT_DIGITAL_SYSTEMS. STATUS: LEARNING_MODE_ACTIVE.
       </p>
-    </section>
-
-    <section class="card" id="contact">
-      <h2>My Hobbies</h2>
-      <ul>
-        <li>Web development</li>
-  <li>Learning new technology</li>
-  <li>Building GitHub projects</li>
-      </ul>
-    </section>
-
-    <section class="card" id="projects">
-      <h2>My Projects</h2>
-
-      <div class="project">
-        <h3>About Me Website</h3>
-        <p>This is my personal website built using HTML, CSS, and JavaScript.</p>
-        <a href="https://khatrisushant.github.io/about-me-website/" target="_blank">Live Demo</a>
-      </div>
-
-      <div class="project">
-        <h3>Coming Soon</h3>
-        <p>I am working on more projects and will add them here.</p>
+      <div class="status-bar">
+        <div class="status-item">CPU: <span class="neon-green">95%</span></div>
+        <div class="status-item">MEMORY: <span class="neon-cyan">87%</span></div>
       </div>
     </section>
 
-    <section class="card">
-  <h2>Contact</h2>
-  <p>Email: sushantkh69@gmail.com</p>
-</section>
-<section class="card">
-  <h2>Connect with Me</h2>
+    <section class="card robot-card" id="contact">
+      <div class="card-header">
+        <h2 class="card-title">> ACTIVE_PROTOCOLS</h2>
+        <div class="header-line"></div>
+      </div>
+      <div class="protocol-list">
+        <div class="protocol-item">◆ WEB_DEVELOPMENT</div>
+        <div class="protocol-item">◆ TECHNOLOGY_RESEARCH</div>
+        <div class="protocol-item">◆ PROJECT_ENGINEERING</div>
+      </div>
+    </section>
 
-  <div class="social-links">
-    <a href="https://github.com/khatrisushant" target="_blank" class="btn">
-      💻 GitHub
-    </a>
+    <section class="card robot-card" id="projects">
+      <div class="card-header">
+        <h2 class="card-title">> DEPLOYED_SYSTEMS</h2>
+        <div class="header-line"></div>
+      </div>
 
-    <a href="https://linkedin.com/in/sushantkhatri/" target="_blank" class="btn">
-      🔗 LinkedIn
-    </a>
-  </div>
-</section>
-    <section class="card" id="resume">
-  <h2>Resume</h2>
-  <a href="resume.pdf" target="_blank" class="btn">📄 View My Resume</a>
+      <div class="project robot-project">
+        <h3 class="project-title">[SYSTEM_001] ABOUT_ME_WEBSITE</h3>
+        <p class="terminal-text">BUILT_WITH: HTML | CSS | JAVASCRIPT | OPERATIONAL_STATUS: LIVE</p>
+        <a href="https://khatrisushant.github.io/about-me-website/" target="_blank" class="neon-btn">[ ENGAGE ]</a>
+      </div>
+
+      <div class="project robot-project">
+        <h3 class="project-title">[SYSTEM_002] INCOMING_TRANSMISSION</h3>
+        <p class="terminal-text">STATUS: [████████░░] 80% COMPLETE | ETA: CALCULATING...</p>
+      </div>
+    </section>
+
+    <section class="card robot-card">
+      <div class="card-header">
+        <h2 class="card-title">> COMMUNICATION_CHANNEL</h2>
+        <div class="header-line"></div>
+      </div>
+      <p class="terminal-text">EMAIL: <span class="neon-green">sushantkh69@gmail.com</span></p>
+    </section>
+
+    <section class="card robot-card">
+      <div class="card-header">
+        <h2 class="card-title">> NETWORK_ACCESS</h2>
+        <div class="header-line"></div>
+      </div>
+
+      <div class="social-links">
+        <a href="https://github.com/khatrisushant" target="_blank" class="neon-btn">
+          [ GITHUB ]
+        </a>
+
+        <a href="https://linkedin.com/in/sushantkhatri/" target="_blank" class="neon-btn">
+          [ LINKEDIN ]
+        </a>
+      </div>
+    </section>
+
+    <section class="card robot-card" id="resume">
+      <div class="card-header">
+        <h2 class="card-title">> SYS_DOCUMENTATION</h2>
+        <div class="header-line"></div>
+      </div>
+  <a href="resume.pdf" target="_blank" class="neon-btn">[ DOWNLOAD_RESUME ]</a>
 </section>
   </main>
-  <a href="tel:+1234567890" class="call-float">📞</a>
-  
-  <div class="chatbot">
-  <button id="chatToggle" class="chat-toggle">💬</button>
 
-  <div id="chatBox" class="chat-box hidden">
-    <div class="chat-header">Chat with Me</div>
+  <a href="tel:+1234567890" class="call-float robot-call">📞</a>
+  
+  <div class="chatbot robot-chatbot">
+  <button id="chatToggle" class="chat-toggle neon-btn">[ CHAT ]</button>
+
+  <div id="chatBox" class="chat-box hidden robot-chat">
+    <div class="chat-header">[ COMMUNICATION_PROTOCOL ]</div>
 
     <div id="chatMessages" class="chat-messages">
-      <div class="bot-message">Hi! Ask me about Sushant, projects, contact, or resume.</div>
+      <div class="bot-message">> SYSTEM READY | ASK ABOUT: PROJECTS | CONTACT | RESUME | ABOUT_ME</div>
     </div>
 
     <div class="chat-input-area">
-      <input type="text" id="chatInput" placeholder="Type a message..." />
-      <button id="sendBtn">Send</button>
+      <input type="text" id="chatInput" placeholder="> INPUT_MESSAGE_" />
+      <button id="sendBtn" class="neon-btn">[ SEND ]</button>
     </div>
   </div>
 </div>
+
 <script src="script.js"></script>
 <canvas id="ag-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;"></canvas>
 

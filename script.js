@@ -1,39 +1,56 @@
-// CHAT TOGGLE (PASTE THIS AT TOP)
-const chatbotToggle = document.getElementById("chatToggle");
-const chatbotBox = document.getElementById("chatBox");
+// === INTRO SCREEN INITIALIZATION ===
+const introScreen = document.getElementById('intro-screen');
 
-if (chatbotToggle && chatbotBox) {
-  chatbotToggle.addEventListener("click", () => {
-    chatbotBox.classList.toggle("hidden");
-  });
-}
-const themeBtn = document.getElementById("themeBtn");
-
-if (themeBtn) {
-  themeBtn.addEventListener("click", function () {
-    document.body.classList.toggle("dark-mode");
-
-    if (document.body.classList.contains("dark-mode")) {
-      themeBtn.textContent = "☀️";
-    } else {
-      themeBtn.textContent = "🌙";
+if (introScreen) {
+  // Hide intro screen on click
+  document.addEventListener('click', function() {
+    if (introScreen && !introScreen.classList.contains('hidden')) {
+      introScreen.classList.add('hidden');
     }
   });
+
+  // Auto-hide after 5 seconds
+  setTimeout(function() {
+    if (introScreen && !introScreen.classList.contains('hidden')) {
+      introScreen.classList.add('hidden');
+    }
+  }, 5000);
 }
 
-const chatToggle = document.getElementById("chatToggle");
-const chatBox = document.getElementById("chatBox");
+// === DARK MODE TOGGLE ===
+const themeBtn = document.getElementById('themeBtn');
+
+if (themeBtn) {
+  themeBtn.addEventListener('click', function () {
+    document.body.classList.toggle('dark-mode');
+
+    if (document.body.classList.contains('dark-mode')) {
+      themeBtn.textContent = '☀️ POWER OFF';
+      localStorage.setItem('theme', 'dark');
+    } else {
+      themeBtn.textContent = '⚡ POWER ON';
+      localStorage.setItem('theme', 'light');
+    }
+  });
+
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    themeBtn.textContent = '☀️ POWER OFF';
+  }
+}
+
+// === CHAT FUNCTIONALITY ===
+const chatbotToggle = document.getElementById("chatToggle");
+const chatbotBox = document.getElementById("chatBox");
 const chatInput = document.getElementById("chatInput");
 const sendBtn = document.getElementById("sendBtn");
 const chatMessages = document.getElementById("chatMessages");
 
-if (chatToggle && chatBox) {
-  chatToggle.addEventListener("click", function () {
-    if (chatBox.style.display === "block") {
-      chatBox.style.display = "none";
-    } else {
-      chatBox.style.display = "block";
-    }
+if (chatbotToggle && chatbotBox) {
+  chatbotToggle.addEventListener("click", () => {
+    chatbotBox.classList.toggle("hidden");
   });
 }
 
@@ -50,26 +67,26 @@ function botReply(userText) {
   const text = userText.toLowerCase();
 
   if (text.includes("project")) {
-    return "I built this personal portfolio website using HTML, CSS, and JavaScript. More projects coming soon!";
+    return "SYSTEM: QUERY RECOGNIZED. I BUILT THIS PERSONAL PORTFOLIO USING: HTML | CSS | JAVASCRIPT. ADDITIONAL_PROJECTS STATUS: [████░░░░░░] 40% DEPLOYED";
   }
 
   if (text.includes("contact")) {
-    return "You can contact me via email or the call button on this page.";
+    return "SYSTEM: COMMUNICATION_PROTOCOL ACTIVE. EMAIL_ADDRESS: sushantkh69@gmail.com | STATUS: ONLINE";
   }
 
   if (text.includes("resume")) {
-    return "You can view my resume using the Resume section above.";
+    return "SYSTEM: SYS_DOCUMENTATION ACCESSIBLE VIA RESUME_SECTION. TRANSFERRING_DATA...";
   }
 
   if (text.includes("who are you") || text.includes("about")) {
-    return "I'm Sushant Khatri, a student learning web development and building projects.";
+    return "SYSTEM: I_AM SUSHANT_KHATRI. SPECIALIZATION: WEB_DEVELOPMENT. LEARNING_STATUS: ACTIVE. CURRENT_PROTOCOLS: [████████░░] 80% COMPLETE";
   }
 
   if (text.includes("github")) {
-    return "Check out my GitHub for more projects!";
+    return "SYSTEM: GITHUB_NETWORK ACCESS ENABLED. INITIATING REPOSITORY DOWNLOAD...";
   }
 
-  return "Try asking about projects, contact, resume, or about me!";
+  return "SYSTEM: QUERY NOT RECOGNIZED. TRY ASKING ABOUT: PROJECTS | CONTACT | RESUME | GITHUB | ABOUT_ME";
 }
 
 function sendMessage() {
@@ -78,7 +95,7 @@ function sendMessage() {
   const userText = chatInput.value.trim();
   if (userText === "") return;
 
-  addMessage(userText, "user-message");
+  addMessage("> " + userText, "user-message");
   chatInput.value = "";
 
   setTimeout(function () {
@@ -98,6 +115,20 @@ if (chatInput) {
     }
   });
 }
+
+// === SMOOTH SCROLL FOR NAVIGATION ===
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+});
 // Intro screen open on click
 const introScreen = document.getElementById("intro-screen");
 
