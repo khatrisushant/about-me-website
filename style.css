@@ -73,9 +73,13 @@ main {
   justify-content: center;
   height: 100vh;
   background: #0a0e27;
-  position: relative;
+  position: fixed;
   overflow: hidden;
   z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  cursor: pointer;
 }
 
 #intro-screen.hidden {
@@ -94,6 +98,7 @@ main {
     transparent 2px
   );
   animation: matrix 0.3s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes matrix {

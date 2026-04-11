@@ -2,19 +2,19 @@
 const introScreen = document.getElementById('intro-screen');
 
 if (introScreen) {
-  // Hide intro screen on click
-  document.addEventListener('click', function() {
+  // Function to hide intro screen
+  function hideIntroScreen() {
     if (introScreen && !introScreen.classList.contains('hidden')) {
       introScreen.classList.add('hidden');
     }
-  });
+  }
+
+  // Hide intro screen on click anywhere
+  introScreen.addEventListener('click', hideIntroScreen);
+  document.addEventListener('click', hideIntroScreen);
 
   // Auto-hide after 5 seconds
-  setTimeout(function() {
-    if (introScreen && !introScreen.classList.contains('hidden')) {
-      introScreen.classList.add('hidden');
-    }
-  }, 5000);
+  setTimeout(hideIntroScreen, 5000);
 }
 
 // === DARK MODE TOGGLE ===
