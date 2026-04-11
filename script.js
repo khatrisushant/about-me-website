@@ -4,14 +4,22 @@ const introScreen = document.getElementById('intro-screen');
 if (introScreen) {
   // Function to hide intro screen
   function hideIntroScreen() {
-    if (introScreen && !introScreen.classList.contains('hidden')) {
-      introScreen.classList.add('hidden');
-    }
+    introScreen.style.display = 'none';
   }
 
-  // Hide intro screen on click anywhere
-  introScreen.addEventListener('click', hideIntroScreen);
-  document.addEventListener('click', hideIntroScreen);
+  // Hide intro screen on click on the screen itself
+  introScreen.addEventListener('click', function(e) {
+    e.stopPropagation();
+    hideIntroScreen();
+  });
+
+  // Also listen to document click as backup
+  document.addEventListener('click', function(e) {
+    // Only hide if we clicked on intro-screen or its children
+    if (introScreen && introScreen.contains(e.target) && introScreen.style.display !== 'none') {
+      hideIntroScreen();
+    }
+  });
 
   // Auto-hide after 5 seconds
   setTimeout(hideIntroScreen, 5000);
@@ -129,14 +137,3 @@ document.querySelectorAll('.nav-link').forEach(link => {
     }
   });
 });
-// Intro screen open on click
-const introScreen = document.getElementById("intro-screen");
-
-if (introScreen) {
-  introScreen.addEventListener("click", () => {
-    introScreen.classList.add("hide");
-  });
-}
-setTimeout(() => {
-  introScreen.classList.add("hide");
-}, 3000);
